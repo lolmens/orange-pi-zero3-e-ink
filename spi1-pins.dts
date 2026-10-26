@@ -1,0 +1,18 @@
+// Armbian-овские overlay spidev1_0/spidev1_1 включают SPI1, но не переводят пины в режим SPI:
+// у узла spi@5011000 нет pinctrl-0, и сигналы не выходят на разъём.
+// Этот overlay назначает SPI1 пины PH6 (CLK, пин 23), PH7 (MOSI, пин 19), PH8 (MISO, пин 21)
+// и PH9 (пин 24). PH9 — это аппаратный CS1, поэтому в паре с ним нужен overlay spidev1_1.
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "allwinner,sun50i-h616";
+
+	fragment@0 {
+		target = <&spi1>;
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <&spi1_pins>, <&spi1_cs1_pin>;
+		};
+	};
+};
