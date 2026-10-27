@@ -9,7 +9,7 @@ flowchart LR
         SPI["SPI1<br/>5011000.spi<br/>/dev/spidev1.1"]
         PIO["PIO<br/>300b000.pinctrl<br/>/dev/gpiochip1"]
     end
-    EPD["WeAct 2.13&quot;<br/>SSD1680"]
+    EPD["WeAct 2.13#quot;<br/>SSD1680"]
 
     S -- "команды и кадр" --> SPI
     S -- "RES, D/C, чтение BUSY" --> PIO
